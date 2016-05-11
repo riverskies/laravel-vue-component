@@ -1,11 +1,8 @@
 <?php
 
-namespace RiverSkies\Laravel\VueComponent;
+namespace RiverSkies\Laravel;
 
-use Blade;
-use Illuminate\Support\ServiceProvider;
-
-class VueComponentServiceProvider extends ServiceProvider
+class VueComponentDirective implements VueDirectiveInterface
 {
     /**
      * List of expressions in case of nesting.
@@ -15,45 +12,61 @@ class VueComponentServiceProvider extends ServiceProvider
     protected $expressions = [];
 
     /**
-     * Bootstrap the application services.
+     * Returns the Blade opening tag.
      *
-     * @return void
+     * @return string
      */
-    public function boot()
+    public function openingTag()
     {
-        Blade::directive('vue', function($expression) {
-            $this->registerExpression($expression);
+        return 'vue';
+    }
 
-            return "
+    /**
+     * Compiles the Blade opening.
+     *
+     * @param $expression
+     * @return mixed
+     */
+    public function openingHandler($expression)
+    {
+        $this->registerExpression($expression);
+
+        return "
                 <?php
                     if(isset{$expression}) {
                         echo '<component is=\"' . trim($expression, '()') . '\" inline-template>';
                     }
                 ?>
             ";
-        });
+    }
 
-        Blade::directive('endvue', function() {
-            $lastExpression = $this->popLastExpression();
+    /**
+     * Returns the Blade closing tag.
+     *
+     * @return mixed
+     */
+    public function closingTag()
+    {
+        return 'endvue';
+    }
 
-            return "
+    /**
+     * Compiles the Blade closing.
+     *
+     * @param $expression
+     * @return mixed
+     */
+    public function closingHandler($expression)
+    {
+        $lastExpression = $this->popLastExpression();
+
+        return "
                 <?php
                     if(isset{$lastExpression}) {
                         echo '</component>';
                     }
                 ?>
             ";
-        });
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 
     /**
@@ -61,7 +74,7 @@ class VueComponentServiceProvider extends ServiceProvider
      *
      * @param $expression
      */
-    function registerExpression($expression)
+    private function registerExpression($expression)
     {
         array_push($this->expressions, $expression);
     }
@@ -72,7 +85,7 @@ class VueComponentServiceProvider extends ServiceProvider
      * @throws \Exception
      * @return string
      */
-    function popLastExpression()
+    private function popLastExpression()
     {
         if (empty($this->expressions)) {
             throw new \Exception('Cannot end a vue without first starting one.');

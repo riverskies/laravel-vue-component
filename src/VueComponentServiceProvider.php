@@ -4,15 +4,16 @@ namespace RiverSkies\Laravel\VueComponent;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
+use RiverSkies\Laravel\VueComponentDirective;
 
 class VueComponentServiceProvider extends ServiceProvider
 {
-    /**
-     * List of expressions in case of nesting.
-     *
-     * @var array
-     */
-    protected $expressions = [];
+    protected $directive;
+
+    public function __construct()
+    {
+        $this->directive = new VueComponentDirective;
+    }
 
     /**
      * Bootstrap the application services.
@@ -21,29 +22,13 @@ class VueComponentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('vue', function($expression) {
-            $this->registerExpression($expression);
+        Blade::directive(
+            $this->directive->openingTag(), [$this->directive, 'openingHandler']
+        );
 
-            return "
-                <?php
-                    if(isset{$expression}) {
-                        echo '<component is=\"' . trim($expression, '()') . '\" inline-template>';
-                    }
-                ?>
-            ";
-        });
-
-        Blade::directive('endvue', function() {
-            $lastExpression = $this->popLastExpression();
-
-            return "
-                <?php
-                    if(isset{$lastExpression}) {
-                        echo '</component>';
-                    }
-                ?>
-            ";
-        });
+        Blade::directive(
+            $this->directive->closingTag(), [$this->directive, 'closingHandler']
+        );
     }
 
     /**
@@ -54,30 +39,5 @@ class VueComponentServiceProvider extends ServiceProvider
     public function register()
     {
         //
-    }
-
-    /**
-     * Adds an expression to the expressions array.
-     *
-     * @param $expression
-     */
-    function registerExpression($expression)
-    {
-        array_push($this->expressions, $expression);
-    }
-
-    /**
-     * Removes an expression from the extensions array.
-     *
-     * @throws \Exception
-     * @return string
-     */
-    function popLastExpression()
-    {
-        if (empty($this->expressions)) {
-            throw new \Exception('Cannot end a vue without first starting one.');
-        }
-
-        return array_pop($this->expressions);
     }
 }

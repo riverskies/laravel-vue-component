@@ -1,0 +1,21 @@
+{
+    "name": "riverskies/laravel-vue-component",
+    "description": "Helper package to aid usage of Vue Components within Laravel projects",
+    "keywords": ["laravel", "vue-component", "vue", "component"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barnabas Kecskes",
+            "email": "barnabas@riverskies.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "RiverSkies\\Laravel\\VueComponent\\": "src/"
+        }
+    }
+}

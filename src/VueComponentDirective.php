@@ -2,7 +2,7 @@
 
 namespace RiverSkies\Laravel;
 
-class VueComponentDirective implements VueDirectiveInterface
+class VueComponentDirective implements BladeDirectiveInterface
 {
     /**
      * List of expressions in case of nesting.

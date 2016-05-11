@@ -2,7 +2,7 @@
 
 namespace RiverSkies\Laravel;
 
-interface VueDirectiveInterface
+interface BladeDirectiveInterface
 {
     /**
      * Returns the Blade opening tag.

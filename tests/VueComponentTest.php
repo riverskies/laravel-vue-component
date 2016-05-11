@@ -1,8 +1,8 @@
 <?php
 
 use Philo\Blade\Blade;
+use RiverSkies\Laravel\BladeDirectiveInterface;
 use RiverSkies\Laravel\VueComponentDirective;
-use RiverSkies\Laravel\VueDirectiveInterface;
 
 class VueComponentTest extends \PHPUnit_Framework_TestCase
 {
@@ -101,7 +101,7 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
      * @param VueDirectiveInterface $directive
      * @return Blade
      */
-    private function setUpTemplateEngine(VueDirectiveInterface $directive)
+    private function setUpTemplateEngine(BladeDirectiveInterface $directive)
     {
         list($views, $cache) = $this->createTestWorld();
         $blade = new Blade($views, $cache);

@@ -34,7 +34,15 @@ class VueComponentDirective implements BladeDirectiveInterface
         return "
                 <?php
                     if(isset{$expression}) {
-                        echo '<component is=\"' . trim($expression, '()') . '\" inline-template>';
+                        if(is_string{$expression}) {
+                            echo '<component is=\"' . trim($expression, '()') . '\" inline-template>';
+                        } elseif(is_array{$expression}) {
+                            if(array_get($expression, 'data')) {
+                                echo '<component is=\"' . array_get($expression, 'is') . '\" data=\"' . addcslashes(json_encode(array_get($expression, 'data')), '\"') . '\" inline-template>';
+                            } else {
+                                echo '<component is=\"' . array_get($expression, 'is') . '\" inline-template>';
+                            }
+                        }
                     }
                 ?>
             ";

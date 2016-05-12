@@ -40,6 +40,43 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /** @test */
+    public function it_returns_the_component_tag_if_vue_component_variable_is_array()
+    {
+        $data = [
+            'vueComponent' => [
+                'is' => 'test-comp'
+            ],
+        ];
+
+        $html = $this->blade->view()->make('test')->with($data)->render();
+
+        $this->assertEquals(
+            '<component is="test-comp" inline-template><h1>Testing</h1></component>',
+            $this->clean($html)
+        );
+    }
+
+    /** @test */
+    public function it_adds_the_data_parameter_to_the_component()
+    {
+        $data = [
+            'vueComponent' => [
+                'is' => 'test-comp',
+                'data' => [
+                    'value' => 123
+                ]
+            ],
+        ];
+
+        $html = $this->blade->view()->make('test')->with($data)->render();
+
+        $this->assertEquals(
+            '<component is="test-comp" data="{\"value\":123}" inline-template><h1>Testing</h1></component>',
+            $this->clean($html)
+        );
+    }
+
     /**
      * Minifying HTML content.
      *

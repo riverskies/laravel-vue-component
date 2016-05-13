@@ -35,7 +35,7 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
         $html = $this->blade->view()->make('test')->with(['vueComponent' => 'test-comp'])->render();
 
         $this->assertEquals(
-            '<component is="test-comp" inline-template><h1>Testing</h1></component>',
+            '<component is="test-comp" inline-template v-cloak><h1>Testing</h1></component>',
             $this->clean($html)
         );
     }
@@ -52,7 +52,7 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
         $html = $this->blade->view()->make('test')->with($data)->render();
 
         $this->assertEquals(
-            '<component is="test-comp" inline-template><h1>Testing</h1></component>',
+            '<component is="test-comp" inline-template v-cloak><h1>Testing</h1></component>',
             $this->clean($html)
         );
     }
@@ -72,7 +72,7 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
         $html = $this->blade->view()->make('test')->with($data)->render();
 
         $this->assertEquals(
-            '<component is="test-comp" data="{\"value\":123}" inline-template><h1>Testing</h1></component>',
+            '<component is="test-comp" data="JSON.parse(decodeURIComponent(\'' . rawurlencode(json_encode($data['vueComponent']['data'])) . '\'))" inline-template v-cloak><h1>Testing</h1></component>',
             $this->clean($html)
         );
     }
@@ -135,7 +135,7 @@ class VueComponentTest extends \PHPUnit_Framework_TestCase
     /**
      * Sets up template engine to mimic Laravel.
      *
-     * @param VueDirectiveInterface $directive
+     * @param BladeDirectiveInterface $directive
      * @return Blade
      */
     private function setUpTemplateEngine(BladeDirectiveInterface $directive)

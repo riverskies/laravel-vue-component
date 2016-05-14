@@ -9,7 +9,7 @@
             "email": "barnabas@riverskies.com"
         }
     ],
-    "minimum-stability": "1.0",
+    "minimum-stability": "stable",
     "require": {
         "illuminate/support": "^5.2"
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverSkies\Laravel\VueComponent;
+namespace Riveskies\Laravel\VueComponent;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;

@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RiverSkies\\Laravel\\": "src/"
+            "Riverskies\\Laravel\\": "src/"
         }
     },
     "require-dev": {

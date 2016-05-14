@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverSkies\Laravel;
+namespace Riverskies\Laravel;
 
 class VueComponentDirective implements BladeDirectiveInterface
 {

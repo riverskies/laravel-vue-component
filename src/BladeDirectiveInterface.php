@@ -1,6 +1,6 @@
 <?php
 
-namespace Riverskies\Laravel;
+namespace Riverskies\Laravel\VueComponent;
 
 interface BladeDirectiveInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
 use Philo\Blade\Blade;
-use Riverskies\Laravel\BladeDirectiveInterface;
-use Riverskies\Laravel\VueComponentDirective;
+use Riverskies\Laravel\VueComponent\BladeDirectiveInterface;
+use Riverskies\Laravel\VueComponent\VueComponentDirective;
 
 class VueComponentTest extends \PHPUnit_Framework_TestCase
 {

@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Riverskies\\Laravel\\": "src/"
+            "Riverskies\\Laravel\\VueComponent\\": "src/"
         }
     },
     "require-dev": {

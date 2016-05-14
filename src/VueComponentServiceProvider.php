@@ -4,7 +4,6 @@ namespace Riveskies\Laravel\VueComponent;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
-use RiverSkies\Laravel\VueComponentDirective;
 
 class VueComponentServiceProvider extends ServiceProvider
 {

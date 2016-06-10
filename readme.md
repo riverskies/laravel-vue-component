@@ -19,7 +19,7 @@ $ composer require riverskies/laravel-vue-component
 Add the service provider to your **config/app.php** file:
 
 ```php
-RiverSkies\Laravel\VueComponent\VueComponentServiceProvider::class
+Riverskies\Laravel\VueComponent\VueComponentServiceProvider::class
 ```
 
 Use the new Blade directive in your layout file:

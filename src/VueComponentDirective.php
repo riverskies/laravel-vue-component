@@ -33,10 +33,10 @@ class VueComponentDirective implements BladeDirectiveInterface
 
         return "
                 <?php
-                    if(isset{$expression}) {
-                        if(is_string{$expression}) {
+                    if(isset({$expression})) {
+                        if(is_string({$expression})) {
                             echo '<component is=\"' . trim($expression, '()') . '\" inline-template v-cloak>';
-                        } elseif(is_array{$expression}) {
+                        } elseif(is_array({$expression})) {
                             if(array_get($expression, 'data')) {
                                 echo '<component is=\"' . array_get($expression, 'is') . '\" data=\"JSON.parse(decodeURIComponent(\'' . rawurlencode(json_encode(array_get($expression, 'data'))) . '\'))\" inline-template v-cloak>';
                             } else {
@@ -70,7 +70,7 @@ class VueComponentDirective implements BladeDirectiveInterface
 
         return "
                 <?php
-                    if(isset{$lastExpression}) {
+                    if(isset({$lastExpression})) {
                         echo '</component>';
                     }
                 ?>

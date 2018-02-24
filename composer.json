@@ -1,7 +1,12 @@
 {
     "name": "riverskies/laravel-vue-component",
     "description": "Helper package to aid usage of Vue Components within Laravel projects",
-    "keywords": ["laravel", "vue-component", "vue", "component"],
+    "keywords": [
+        "laravel",
+        "vue-component",
+        "vue",
+        "component"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -13,13 +18,20 @@
     "require": {
         "illuminate/support": "^5.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^5.3",
+        "philo/laravel-blade": "^3.1"
+    },
     "autoload": {
         "psr-4": {
             "Riverskies\\Laravel\\VueComponent\\": "src/"
         }
     },
-    "require-dev": {
-        "phpunit/phpunit": "^5.3",
-        "philo/laravel-blade": "^3.1"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Riverskies\\Laravel\\VueComponent\\VueComponentServiceProvider"
+            ]
+        }
     }
 }

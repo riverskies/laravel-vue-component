@@ -17,7 +17,7 @@ Install the package through composer:
 $ composer require riverskies/laravel-vue-component
 ```
 
-Add the service provider to your **config/app.php** file:
+If you're running Laravel 5.4 or earlier, add the service provider to your **config/app.php** file:
 ```php
 Riverskies\Laravel\VueComponent\VueComponentServiceProvider::class,
 ```
